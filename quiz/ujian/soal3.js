@@ -4,24 +4,31 @@ function highestScore(students) {
         return {};
     }
 
-    let highests = [];
+    let highests = {};
 
     for (let i = 0; i < students.length; i++) {
-        let highestStudent = -1;
+        let highestStudent = {
+            name: students[i].name,
+            score: students[i].score,
+        };
+        
         let amountStudent = 0;
         for (let i2 = 0; i2 < students.length; i2++) {
             if (students[i].class === students[i2].class) {
                 amountStudent++;
                 if (students[i2].score > students[i].score) {
-                    highestStudent = i2;
+                    highestStudent.name = students[i2].name
+                    highestStudent.score = students[i2].score
                 }
             }
         }
-        if (highestStudent >= 0) {
-            highests.push(students[highestStudent]);
+
+        let studentClass = students[i].class;
+        if (amountStudent >= 0) {
+            highests[studentClass] = highestStudent;
         } 
         if (amountStudent === 1) {
-            highests.push(students[i]);
+            highests[studentClass] = highestStudent;
         }
     }
 
