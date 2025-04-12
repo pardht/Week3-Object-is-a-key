@@ -1,34 +1,20 @@
 function highestScore(students) {
     // Code disini
-    if(students.length < 1) {
+    if (students.length < 1) {
         return {};
     }
 
     let highests = {};
 
     for (let i = 0; i < students.length; i++) {
-        let highestStudent = {
-            name: students[i].name,
-            score: students[i].score,
-        };
-        
-        let amountStudent = 0;
-        for (let i2 = 0; i2 < students.length; i2++) {
-            if (students[i].class === students[i2].class) {
-                amountStudent++;
-                if (students[i2].score > students[i].score) {
-                    highestStudent.name = students[i2].name
-                    highestStudent.score = students[i2].score
-                }
-            }
-        }
 
-        let studentClass = students[i].class;
-        if (amountStudent >= 0) {
-            highests[studentClass] = highestStudent;
-        } 
-        if (amountStudent === 1) {
-            highests[studentClass] = highestStudent;
+        let studentClass = students[i].class
+        
+        if (!highests[studentClass] || students[i].score > highests[studentClass].score) {
+                highests[studentClass] = {
+                    name: students[i].name,
+                    score: students[i].score,
+                };
         }
     }
 
